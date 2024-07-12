@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memer</title>
+    <script>
+        window.onload = () => {
+            const button = document.querySelector('button');
+            const input = document.querySelector('input');
+            const response = document.querySelector('#response');
+
+            button.addEventListener('click', () => {
+                response.innerHTML = 'Loading...';
+                fetch('https://na5hh237bdcfbkzr3foqjbfgaa0gedjn.lambda-url.us-east-1.on.aws/', {
+                    method: 'POST',
+                    body: input.value
+                }).then(res => res.text()).then(data => {
+                    response.innerHTML = data;
+                });
+            });
+            document.querySelector('input').focus();
+        };
+    </script>
+    <style>
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; width: 100vw; height: 100vh; font-family: Helvetica, sans-serif; flex-direction: column;">
+    <input type="text" style="border: 2px solid goldenrod; box-shadow: none; border-radius: 0.5rem; height: 2rem; width: 50rem; max-width: 80vw;">
+    <button style="border: 2px solid goldenrod; box-shadow: none; border-radius: 2rem; background-color: goldenrod; color: white; padding: 0.5rem 1rem; margin-top: 1rem;">Respond (but a lil silly)</button>
+    <div style="color: black; max-width: 80vw;" id="response">
+
+    </div>
+</body>
+</html>
